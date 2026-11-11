@@ -25,23 +25,22 @@ jobs:
           pip install opencv-python
           python -c "import cv2; print('OpenCV version:', cv2.__version__)"
 
-name: Install MongoDB and Print Version
-on: 
- push:
-  branches: main
-jobs: 
-    MongoDBInstallandPrintVersion:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Install MongoDB
-              run: | 
-                sudo apt-get install gnupg curl
-                curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-8.0.gpg --dearmor
-                echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu noble/mongodb-org/8.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list
-                sudo apt-get update
-                sudo apt-get install -y mongodb-org
-            - name: Print MongoDB Version
-              run:
-                mongod --version
-          sudo systemctl start mongodb || sudo systemctl start mongod || true
-          mongod --version
+  dbms_level:
+    name: Install MongoDB and Print Version
+    runs-on: ubuntu-latest
+    needs: [software_processing_level]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install MongoDB
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gnupg curl
+          curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg --dearmor
+          echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+          sudo apt-get update
+          sudo apt-get install -y mongodb-org
+
+      - name: Print MongoDB Version
+        run: mongod --version
