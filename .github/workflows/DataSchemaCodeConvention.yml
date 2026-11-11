@@ -1,0 +1,22 @@
+name: DataSchemaCodeConvention.yml
+
+on:
+  push:
+    # обробка лише події типу push
+    branches: [ "main", "laboratory-work-4" ]
+
+jobs:
+  SQLLinter:
+    # використання Docker-image із вказаною версією ОС
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code in Repository
+        # клонування репозиторія для подальшої роботи з файлами на сервері
+        # в каталозі $GITHUB_WORKSPACE
+        uses: "actions/checkout@v3"
+
+      - name: Start SQL Linter
+        # виконання декількох послідовних команд shell-інтерпретатором
+        run: |
+          pip install sqlfluff
+          sqlfluff lint $GITHUB_WORKSPACE/DataSchema.sql --dialect oracle
