@@ -22,4 +22,4 @@ jobs:
 
       - name: Run Python Linter (Flake8)
         run: |
-          flake8 ProgramCode.py
+          flake8 ProgramCodeModified.py
