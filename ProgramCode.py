@@ -1,11 +1,8 @@
-"""Module for AR Steering Wheel System software presentation."""
-
+# Program Code for AR Steering Wheel System
 
 def main():
-    """Prints the name of the software product."""
-    product_name = "AR Steering Wheel System"
-    print(f"Software Product: {product_name}")
-
+    print("AR Steering Wheel System")  # звичайний вивід назви продукту
+    x = 1+1  # порушення PEP8 (відсутність пробілів навколо оператора)
 
 if __name__ == "__main__":
     main()
