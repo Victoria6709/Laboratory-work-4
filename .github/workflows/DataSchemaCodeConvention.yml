@@ -19,4 +19,4 @@ jobs:
         # виконання декількох послідовних команд shell-інтерпретатором
         run: |
           pip install sqlfluff
-          sqlfluff lint DataSchemaModified.sql --dialect oracle
+          sqlfluff lint DataSchema.sql --dialect oracle
