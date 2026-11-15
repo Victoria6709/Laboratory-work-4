@@ -22,4 +22,4 @@ jobs:
 
       - name: Run JSON Linter
         run: |
-          jsonlint $GITHUB_WORKSPACE/DataSchema.json
+          jsonlint $GITHUB_WORKSPACE/DataSchemaModified.json
