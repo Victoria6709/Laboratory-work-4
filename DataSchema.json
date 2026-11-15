@@ -1,7 +1,16 @@
 {
-  "users": {
-    "user_id": 1,
-    "ename": "Victoria"
-    "email": "victoria@example.com"
+  "steering_system": {
+    "device_name": "AR Steering Wheel",
+    "marker_tracking": "OpenCV / ArUco",
+    "parameters": {
+      "angle_range": 360,
+      "calibrated": true
+    }
+    "users": [
+      {
+        "user_id": 1,
+        "username": "Victoria"
+      }
+    ]
   }
 }
